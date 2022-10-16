@@ -69,7 +69,7 @@ if (global.db) setInterval(async () => {
   }, 30 * 1000)
 
 async function startH.Z.sA() {
-    const naze = H.Z.sAConnect({
+    const H.Z.sA = H.Z.sAConnect({
         logger: pino({ level: 'silent' }),
         printQRInTerminal: true,
         browser: ['YT H.Z.sA','Safari','1.0.0'],
@@ -83,7 +83,7 @@ async function startH.Z.sA() {
     const callerId = json.content[0].attrs['call-creator']
     if (json.content[0].tag == 'offer') {
     let pa7rick = await H.Z.sA.sendContact(callerId, global.owner)
-    naze.sendMessage(callerId, { text: `*Sistem otomatis block!*\n*Jangan menelpon bot*!\n*Silahkan Hubungi Owner Untuk Dibuka !*`}, { quoted : pa7rick })
+    H.Z.sA.sendMessage(callerId, { text: `*Sistem otomatis block!*\n*Jangan menelpon bot*!\n*Silahkan Hubungi Owner Untuk Dibuka !*`}, { quoted : pa7rick })
     await sleep(8000)
     await H.Z.sA.updateBlockStatus(callerId, "block")
     }
@@ -96,7 +96,7 @@ async function startH.Z.sA() {
         if (!mek.message) return
         mek.message = (Object.keys(mek.message)[0] === 'ephemeralMessage') ? mek.message.ephemeralMessage.message : mek.message
         if (mek.key && mek.key.remoteJid === 'status@broadcast') return
-        if (!naze.public && !mek.key.fromMe && chatUpdate.type === 'notify') return
+        if (!H.Z.sA.public && !mek.key.fromMe && chatUpdate.type === 'notify') return
         if (mek.key.id.startsWith('BAE5') && mek.key.id.length === 16) return
         m = smsg(H.Z.sA, mek, store)
         require("./H.Z.sA")(H.Z.sA, m, chatUpdate, store)
@@ -118,7 +118,7 @@ async function startH.Z.sA() {
        if (pea[0].announce == true) {
        H.Z.sA.send5ButImg(pea[0].id, `「 *Group Settings Change* 」\n\nGroup telah ditutup oleh admin, Sekarang hanya admin yang dapat mengirim pesan !`, `Group Settings Change Message by ArullOfc`, wm_fatih, [])
        } else if(pea[0].announce == false) {
-       naze.send5ButImg(pea[0].id, `「 *Group Settings Change* 」\n\nGroup telah dibuka oleh admin, Sekarang peserta dapat mengirim pesan !`, `Group Settings Change Message by ArullOfc`, wm_fatih, [])
+       H.Z.sA.send5ButImg(pea[0].id, `「 *Group Settings Change* 」\n\nGroup telah dibuka oleh admin, Sekarang peserta dapat mengirim pesan !`, `Group Settings Change Message by ArullOfc`, wm_fatih, [])
        } else if (pea[0].restrict == true) {
        H.Z.sA.send5ButImg(pea[0].id, `「 *Group Settings Change* 」\n\nInfo group telah dibatasi, Sekarang hanya admin yang dapat mengedit info group !`, `Group Settings Change Message by ArullOfc`, wm_fatih, [])
        } else if (pea[0].restrict == false) {
